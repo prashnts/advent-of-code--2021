@@ -1,3 +1,7 @@
+import os
+
+__here__ = os.path.dirname(__file__)
+
 TEST_DATA = [
     'forward 5',
     'down 5',
@@ -40,7 +44,7 @@ if __name__ == '__main__':
     assert calculate_1(TEST_DATA) == 150
     assert calculate_2(TEST_DATA) == 900
 
-    with open('./task_2.input.txt', 'r') as fp:
+    with open(os.path.join(__here__, 'input.txt'), 'r') as fp:
         commands = fp.read().split('\n')
 
     answer_1 = calculate_1(commands)

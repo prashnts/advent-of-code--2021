@@ -1,3 +1,7 @@
+import os
+
+__here__ = os.path.dirname(__file__)
+
 TEST_DATA = [
     199,
     200,
@@ -20,7 +24,7 @@ def n_measurements_increasing(measurements):
 if __name__ == '__main__':
     assert n_measurements_increasing(TEST_DATA) == 7
 
-    with open('./task_1.input.txt', 'r') as fp:
+    with open(os.path.join(__here__, 'input.txt'), 'r') as fp:
         lines = fp.read().split()
         measurements = [int(x) for x in lines]
 
