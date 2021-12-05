@@ -18,6 +18,7 @@ TEST_DATA = '''\
 '''
 
 def decode_input(data):
+    '''Generates line segment coordinates from each line.'''
     lines = data.split('\n')
     for line in lines:
         start, end = line.split(' -> ')
@@ -66,6 +67,16 @@ def coverage(segments):
 
 
 def calculate(segments):
+    '''Calculates the overlaps between given line segments.
+
+    The calculation is quite simple. We begin with generating all the points
+    covered by each line segment.
+    Covered points are basically coordinates where there is a line passing by
+    or starts/ends at.
+    Once we have those points, we can simply count the frequency of each
+    coordinate. Then we simply filter the coordinates which were repeated more
+    than once. We then count those filtered frequencies to get the result.
+    '''
     point_coverage = coverage(segments)
     point_counts = Counter([tuple(p) for p in point_coverage])
     overlaps = [p for p in point_counts.values() if p > 1]
