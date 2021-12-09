@@ -54,7 +54,8 @@ def calculate_1(data):
 
 def calculate_2(data):
     '''
-    For more fun check out: The Broken Digital Clock problem.
+    For more fun check out: The Broken Digital Clock problem:
+    https://andersource.dev/2021/04/29/faulty_digital_clock.html
 
     Seven
     Segments
