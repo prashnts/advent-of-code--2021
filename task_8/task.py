@@ -74,7 +74,7 @@ def calculate_2(data):
     -> In 2, 3, 5 combined, a, d, and g will be counted thrice. (adg)
     -> Segment bd is determined from set diff of four and one.
     -> Segment dg is determined from adg - a.
-    -> Segment be is determined from bcef - df (1).
+    -> Segment be is determined from bcef - cf (1).
     -> Segments d, b, e, g, can then be derived.
     -> We can determine 6 now by checking where d and e is both present
        in length 6 items.
