@@ -1,7 +1,5 @@
 import os
 
-from collections import Counter
-
 
 __here__ = os.path.dirname(__file__)
 
@@ -99,7 +97,6 @@ def calculate_2(data):
         digit_sorted = ''.join(sorted(digit))
         return new_mapping[digit_sorted]
 
-
     decoder = decode_input(data)
     output_sums = 0
 
@@ -110,8 +107,8 @@ def calculate_2(data):
         seven = pull_element(filter(lambda x: len(x) == 3, signals))
         eight = pull_element(filter(lambda x: len(x) == 7, signals))
 
-        l_fives = list(filter(lambda x: len(x) == 5, signals)) # Two, Five, or Three
-        l_six = list(filter(lambda x: len(x) == 6, signals)) # Six, Nine or Zero
+        l_fives = list(filter(lambda x: len(x) == 5, signals))  # Two, Five, or Three
+        l_six   = list(filter(lambda x: len(x) == 6, signals))  # Six, Nine or Zero
         l_fives_s = ''.join(l_fives)
 
         seg_a = set(seven) - set(one)

@@ -78,7 +78,6 @@ def flood_fill(data, origin, shape):
     x_max, y_max = shape
     array = [d[:] for d in data]
 
-
     def filler(x, y):
         if x < 0 or y < 0 or x >= x_max or y >= y_max:
             # Bounds check.
