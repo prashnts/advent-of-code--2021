@@ -51,7 +51,6 @@ def decode_input(data):
     # Returns the bidirectional adjacency list from data.
     lines = data.split('\n')
     pairs = [x.split('-') for x in lines]
-
     adj_list = defaultdict(set)
 
     for lt, rt in pairs:
@@ -76,9 +75,7 @@ def calculate_1(data, can_visit_small_twice):
             if node == 'end':
                 state.append('end')
                 paths.append(state)
-            elif is_big_cave(node):
-                dfs(node, state, can_visit_small_twice)
-            elif node not in state:
+            elif is_big_cave(node) or node not in state:
                 dfs(node, state, can_visit_small_twice)
             elif is_small_cave(node) and can_visit_small_twice:
                 dfs(node, state, False)
