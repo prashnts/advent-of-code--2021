@@ -1,7 +1,6 @@
 import re
 
 from collections import namedtuple
-from itertools import zip_longest
 
 
 TEST_DATA = 'target area: x=20..30, y=-10..-5'
