@@ -14,16 +14,18 @@ class ImageTile:
 
     def __init__(self, bitmap: list[list[str]], background='.'):
         self.background = background
+        self.bitmap = self._pad_bitmap(bitmap, background)
 
+    def _pad_bitmap(self, bitmap, background):
+        # expand the bitmap. by 1 in each direction.
         sx, sy = len(bitmap), len(bitmap[0])
 
-        # expand the bitmap. by 1 in each direction.
         bmp = [[background for _ in range(sx + 2)] for _ in range(sy + 2)]
         for x in range(sx):
             for y in range(sy):
                 bmp[x + 1][y + 1] = bitmap[x][y]
 
-        self.bitmap = bmp
+        return bmp
 
     @property
     def shape(self) -> tuple[int, int]:
@@ -56,7 +58,7 @@ class ImageTile:
         enhancement_num = ''.join(subtile).replace('#', '1').replace('.', '0')
         return algo[int(enhancement_num, base=2)]
 
-    def enhance(self, algo: str) -> 'ImageTile':
+    def enhance(self, algo: str, inplace=False) -> 'ImageTile':
         sx, sy = self.shape
         bmp = [[self.background for _ in range(sx)] for _ in range(sy)]
 
@@ -67,6 +69,11 @@ class ImageTile:
 
         bg = '1' if self.background == '#' else '0'
         next_background = algo[int(bg * 9, base=2)]
+
+        if inplace:
+            self.background = next_background
+            self.bitmap = self._pad_bitmap(bmp, next_background)
+            return self
 
         return ImageTile(bmp, next_background)
 
@@ -102,7 +109,7 @@ def calculate_1(data: str, iters: int) -> int:
     enhancement_algo, img = decode_input(data)
 
     for _ in range(iters):
-        img = img.enhance(enhancement_algo)
+        img = img.enhance(enhancement_algo, inplace=False)
 
     return img.n_lit_pixels
 
